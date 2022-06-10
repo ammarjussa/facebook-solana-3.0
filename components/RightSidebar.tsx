@@ -1,8 +1,13 @@
-import { useEffect } from 'react'
-import Image from 'next/image'
-import Contact from './Contact'
+import { useEffect } from "react";
+import Image from "next/image";
+import Contact from "./Contact";
 
-const RightSidebar = ({ getUsers, users }) => {
+interface Props {
+  users: any;
+  getUsers: any;
+}
+
+const RightSidebar: React.FC<Props> = ({ getUsers, users }) => {
   const style = {
     wrapper: `w-[24rem] text-lg text-white`,
     title: `text-[#afb3b8] font-semibold`,
@@ -15,13 +20,13 @@ const RightSidebar = ({ getUsers, users }) => {
     contact: `flex items-center my-2`,
     contactImage: `rounded-full object-cover`,
     contactName: `ml-4 text-[1rem]`,
-  }
+  };
 
   useEffect(() => {
-    ;(async () => {
-      await getUsers()
-    })()
-  }, [])
+    (async () => {
+      await getUsers();
+    })();
+  }, []);
 
   return (
     <div className={style.wrapper}>
@@ -31,12 +36,12 @@ const RightSidebar = ({ getUsers, users }) => {
           <div className={style.adImageContainer}>
             <Image
               src={
-                'https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/themes/284832/settings_images/HpzVcovxQz28Br7GkRyq_15289248_269068140162594_1580546814749307408_o_1_.png'
+                "https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/themes/284832/settings_images/HpzVcovxQz28Br7GkRyq_15289248_269068140162594_1580546814749307408_o_1_.png"
               }
               height={100}
               width={100}
               className={style.adImage}
-              alt='cp logo'
+              alt="cp logo"
             />
             ˚
           </div>
@@ -49,12 +54,12 @@ const RightSidebar = ({ getUsers, users }) => {
           <div className={style.adImageContainer}>
             <Image
               src={
-                'https://www.cityam.com/wp-content/uploads/2021/08/Solana-1.jpg'
+                "https://www.cityam.com/wp-content/uploads/2021/08/Solana-1.jpg"
               }
               height={100}
               width={100}
               className={style.adImage}
-              alt='solana logo'
+              alt="solana logo"
             />
           </div>
           <div>
@@ -64,14 +69,14 @@ const RightSidebar = ({ getUsers, users }) => {
         </div>
         <div className={style.divider} />
         <div className={style.title}>Contacts</div>
-        <div className={style.contactsContainer}>
-          {users.map(user => {
-            return <Contact key={user.walletAddress} user={user} />
+        <div>
+          {users.map((user: any) => {
+            return <Contact key={user.walletAddress} user={user} />;
           })}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default RightSidebar
+export default RightSidebar;

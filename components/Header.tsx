@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Image from "next/image";
 import { AiOutlineSearch, AiFillHome } from "react-icons/ai";
 import { BsDisplay } from "react-icons/bs";
@@ -9,7 +8,12 @@ import useWalletBalance from "../context/useWalletBalance";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 require("@solana/wallet-adapter-react-ui/styles.css");
 
-const Header = ({ name, url }) => {
+interface Props {
+  name: string;
+  url: string;
+}
+
+const Header: React.FC<Props> = ({ name, url }) => {
   const [balance] = useWalletBalance();
 
   const style = {

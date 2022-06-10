@@ -1,12 +1,16 @@
-import Image from 'next/image'
-import TimeAgo from 'javascript-time-ago'
-import en from 'javascript-time-ago/locale/en.json'
+import Image from "next/image";
+import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en.json";
 
-TimeAgo.addDefaultLocale(en)
+TimeAgo.addDefaultLocale(en);
 
-const timeAgo = new TimeAgo('en-US')
+const timeAgo = new TimeAgo("en-US");
 
-const Comment = ({ comment }) => {
+interface Props {
+  comment: any;
+}
+
+const Comment: React.FC<Props> = ({ comment }) => {
   const style = {
     commentWrapper: `flex`,
     profileImageContainer: `object-cover mr-2`,
@@ -16,7 +20,7 @@ const Comment = ({ comment }) => {
     commentActionsContainer: `flex items-center gap-[1rem] ml-[3.4rem] mb-[1rem] mt-1`,
     actionItem: `text-[#a6aba4] text-sm font-bold cursor-pointer`,
     timestamp: `text-[#a6aba4] text-sm`,
-  }
+  };
 
   return (
     <>
@@ -40,12 +44,12 @@ const Comment = ({ comment }) => {
         <div className={style.timestamp}>
           {timeAgo.format(
             new Date(comment.postTime.toNumber() * 1000),
-            'twitter-now',
+            "twitter-now"
           )}
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Comment
+export default Comment;

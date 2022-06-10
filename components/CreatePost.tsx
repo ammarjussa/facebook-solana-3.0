@@ -1,11 +1,18 @@
-import React, { useState } from 'react'
-import Image from 'next/image'
-import { BsFileImageFill, BsFillCameraVideoFill } from 'react-icons/bs'
-import { FiRefreshCw } from 'react-icons/fi'
-import 'react-simple-hook-modal/dist/styles.css'
+import React, { useState } from "react";
+import Image from "next/image";
+import { BsFileImageFill, BsFillCameraVideoFill } from "react-icons/bs";
+import { FiRefreshCw } from "react-icons/fi";
+import "react-simple-hook-modal/dist/styles.css";
 
-const CreatePost = ({ savePost, getAllPosts, name, url }) => {
-  const [input, setInput] = useState('')
+interface Props {
+  savePost: any;
+  getAllPosts: any;
+  name: string;
+  url: string;
+}
+
+const CreatePost: React.FC<Props> = ({ savePost, getAllPosts, name, url }) => {
+  const [input, setInput] = useState("");
 
   const style = {
     wrapper: `w-[100%] flex mt-[1rem] flex-col rounded-[0.6rem] bg-[#252526] p-2 pt-4 pb-0 shadow-[0px 5px 7px -7px rgba(0, 0, 0, 0.75)]`,
@@ -21,21 +28,21 @@ const CreatePost = ({ savePost, getAllPosts, name, url }) => {
     photoIcon: `text-green-500`,
     refreshIcon: `text-blue-500`,
     spinner: `h-full w-full flex justify-center items-center`,
-  }
+  };
 
-  const handleSubmit = async event => {
-    event.preventDefault()
-    setInput('')
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    setInput("");
 
-    await savePost(input)
-  }
+    await savePost(input);
+  };
 
   return (
     <div className={style.wrapper}>
       <div className={style.formContainer}>
         <Image
           src={url}
-          alt='profile image'
+          alt="profile image"
           className={style.profileImage}
           height={40}
           width={40}
@@ -43,14 +50,14 @@ const CreatePost = ({ savePost, getAllPosts, name, url }) => {
         <form className={style.form}>
           <input
             value={input}
-            onChange={event => setInput(event.target.value)}
+            onChange={(event) => setInput(event.target.value)}
             className={style.input}
             placeholder={`What's on your mind, ${name}?`}
           />
 
           <button
             className={style.hiddenSubmit}
-            type='submit'
+            type="submit"
             onClick={handleSubmit}
           />
         </form>
@@ -71,7 +78,7 @@ const CreatePost = ({ savePost, getAllPosts, name, url }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CreatePost
+export default CreatePost;

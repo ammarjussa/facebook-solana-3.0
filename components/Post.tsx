@@ -1,17 +1,31 @@
-import { useState, useEffect } from 'react'
-import Image from 'next/image'
-import { BiLike } from 'react-icons/bi'
-import { FaRegCommentAlt } from 'react-icons/fa'
-import { FiRefreshCw } from 'react-icons/fi'
-import CommentSection from './CommentSection'
-import TimeAgo from 'javascript-time-ago'
-import en from 'javascript-time-ago/locale/en.json'
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { BiLike } from "react-icons/bi";
+import { FaRegCommentAlt } from "react-icons/fa";
+import { FiRefreshCw } from "react-icons/fi";
+import CommentSection from "./CommentSection";
+import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en.json";
 
-TimeAgo.addDefaultLocale(en)
+TimeAgo.addDefaultLocale(en);
 
-const timeAgo = new TimeAgo('en-US')
+const timeAgo = new TimeAgo("en-US");
 
-const Post = ({ post, viewDetail, createComment, name, url }) => {
+interface Props {
+  post: any;
+  viewDetail: any;
+  createComment: any;
+  name: string;
+  url: string;
+}
+
+const Post: React.FC<Props> = ({
+  post,
+  viewDetail,
+  createComment,
+  name,
+  url,
+}) => {
   const style = {
     wrapper: `w-[100%] mt-[1rem] rounded-[0.6rem] bg-[#252526] text-white p-[0.4rem] pb-0`,
     postPublisher: `flex position-relative items-center`,
@@ -24,33 +38,33 @@ const Post = ({ post, viewDetail, createComment, name, url }) => {
     reactionItem: `flex flex-1 items-center justify-center rounded-[0.4rem] hover:bg-[#404041] py-2`,
     reactionsText: `ml-[1rem]`,
     refreshIcon: `text-blue-500`,
-  }
+  };
 
-  const [isCommentSectionOpened, setIsCommentSectionOpened] = useState(false)
-  const [comments, setComments] = useState([])
+  const [isCommentSectionOpened, setIsCommentSectionOpened] = useState(false);
+  const [comments, setComments] = useState([]);
+
+  const clockToDateString = (timestamp: any) =>
+    timeAgo.format(new Date(timestamp.toNumber() * 1000), "twitter-now");
+
+  const postDetail = async () => {
+    const result = await viewDetail(post.index, post);
+
+    setComments(await result);
+  };
+
+  const createCommentForPost = async (text: any) => {
+    createComment(text, post.index, post.commentCount);
+  };
 
   useEffect(() => {
-    postDetail()
-  }, [postDetail])
+    postDetail();
+  }, [postDetail]);
 
   useEffect(() => {
     if (comments.length > 0) {
-      setIsCommentSectionOpened(true)
+      setIsCommentSectionOpened(true);
     }
-  }, [comments])
-
-  const clockToDateString = timestamp =>
-    timeAgo.format(new Date(timestamp.toNumber() * 1000), 'twitter-now')
-
-  const postDetail = async () => {
-    const result = await viewDetail(post.index, post)
-
-    setComments(await result)
-  }
-
-  const createCommentForPost = async text => {
-    createComment(text, post.index, post.commentCount)
-  }
+  }, [comments]);
 
   return (
     <div className={style.wrapper}>
@@ -60,7 +74,7 @@ const Post = ({ post, viewDetail, createComment, name, url }) => {
           className={style.avatar}
           height={44}
           width={44}
-          alt='publisher profile image'
+          alt="publisher profile image"
         />
         <div className={style.publisherDetails}>
           <div className={style.name}>{post.posterName}</div>
@@ -100,7 +114,7 @@ const Post = ({ post, viewDetail, createComment, name, url }) => {
         />
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Post
+export default Post;
