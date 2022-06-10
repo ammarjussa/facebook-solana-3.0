@@ -1,48 +1,35 @@
-/// Include libraries for program
 use anchor_lang::prelude::*;
 use anchor_spl::token::{self, Token};
 use std::mem::size_of;
 
-// Declare program ID
-declare_id!("GNSDgX32cCeuuN96GRiBmFE4BAXqgFpftqxSCzDrdkTd");
 
-// Post and comment text length
+declare_id!("FcJetjh4X2GKxhW2UyuwjRV2LeX6UuMQdUkQ7XXoueLC");
+
+
 const TEXT_LENGTH: usize = 1024;
-// Username length
 const USER_NAME_LENGTH: usize = 100;
-// User profile imaage url length
 const USER_URL_LENGTH: usize = 255;
 
-/// Facebook Clone program
+
 #[program]
 pub mod facebook_clone {
     use super::*;
 
-    /// Create state to save the post counts
-    /// There is only one state in the program
-    /// This account should be initialized before post
     pub fn create_state(
         ctx: Context<CreateState>,
-    ) -> ProgramResult {
-        // Get state from context
+    ) -> Result<()>{
         let state = &mut ctx.accounts.state;
-        // Save authority to state
         state.authority = ctx.accounts.authority.key();
-        // Set post count as 0 when initializing
         state.post_count = 0;
         Ok(())
     }
 
-    /// Create post
-    /// @param text:        text of post
-    /// @param poster_name: name of post creator
-    /// @param poster_url:  url of post creator avatar
     pub fn create_post(
         ctx: Context<CreatePost>,
         text: String,
         poster_name: String,
         poster_url: String,
-    ) -> ProgramResult {
+    ) -> Result<()> {
         // Get State
         let state = &mut ctx.accounts.state;
 
@@ -77,7 +64,7 @@ pub mod facebook_clone {
         text: String,
         commenter_name: String,
         commenter_url: String,
-    ) -> ProgramResult {
+    ) -> Result<()> {
 
         // Get post
         let post = &mut ctx.accounts.post;

@@ -5,125 +5,43 @@
     {
       "name": "createState",
       "accounts": [
-        {
-          "name": "state",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        }
+        { "name": "state", "isMut": true, "isSigner": false },
+        { "name": "authority", "isMut": true, "isSigner": true },
+        { "name": "systemProgram", "isMut": false, "isSigner": false },
+        { "name": "tokenProgram", "isMut": false, "isSigner": false }
       ],
       "args": []
     },
     {
       "name": "createPost",
       "accounts": [
-        {
-          "name": "state",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "post",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "clock",
-          "isMut": false,
-          "isSigner": false
-        }
+        { "name": "state", "isMut": true, "isSigner": false },
+        { "name": "post", "isMut": true, "isSigner": false },
+        { "name": "authority", "isMut": true, "isSigner": true },
+        { "name": "systemProgram", "isMut": false, "isSigner": false },
+        { "name": "tokenProgram", "isMut": false, "isSigner": false },
+        { "name": "clock", "isMut": false, "isSigner": false }
       ],
       "args": [
-        {
-          "name": "text",
-          "type": "string"
-        },
-        {
-          "name": "posterName",
-          "type": "string"
-        },
-        {
-          "name": "posterUrl",
-          "type": "string"
-        }
+        { "name": "text", "type": "string" },
+        { "name": "posterName", "type": "string" },
+        { "name": "posterUrl", "type": "string" }
       ]
     },
     {
       "name": "createComment",
       "accounts": [
-        {
-          "name": "post",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "comment",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "clock",
-          "isMut": false,
-          "isSigner": false
-        }
+        { "name": "post", "isMut": true, "isSigner": false },
+        { "name": "comment", "isMut": true, "isSigner": false },
+        { "name": "authority", "isMut": true, "isSigner": true },
+        { "name": "systemProgram", "isMut": false, "isSigner": false },
+        { "name": "tokenProgram", "isMut": false, "isSigner": false },
+        { "name": "clock", "isMut": false, "isSigner": false }
       ],
       "args": [
-        {
-          "name": "text",
-          "type": "string"
-        },
-        {
-          "name": "commenterName",
-          "type": "string"
-        },
-        {
-          "name": "commenterUrl",
-          "type": "string"
-        }
+        { "name": "text", "type": "string" },
+        { "name": "commenterName", "type": "string" },
+        { "name": "commenterUrl", "type": "string" }
       ]
     }
   ],
@@ -133,14 +51,8 @@
       "type": {
         "kind": "struct",
         "fields": [
-          {
-            "name": "authority",
-            "type": "publicKey"
-          },
-          {
-            "name": "postCount",
-            "type": "u64"
-          }
+          { "name": "authority", "type": "publicKey" },
+          { "name": "postCount", "type": "u64" }
         ]
       }
     },
@@ -149,34 +61,13 @@
       "type": {
         "kind": "struct",
         "fields": [
-          {
-            "name": "authority",
-            "type": "publicKey"
-          },
-          {
-            "name": "text",
-            "type": "string"
-          },
-          {
-            "name": "posterName",
-            "type": "string"
-          },
-          {
-            "name": "posterUrl",
-            "type": "string"
-          },
-          {
-            "name": "commentCount",
-            "type": "u64"
-          },
-          {
-            "name": "index",
-            "type": "u64"
-          },
-          {
-            "name": "postTime",
-            "type": "i64"
-          }
+          { "name": "authority", "type": "publicKey" },
+          { "name": "text", "type": "string" },
+          { "name": "posterName", "type": "string" },
+          { "name": "posterUrl", "type": "string" },
+          { "name": "commentCount", "type": "u64" },
+          { "name": "index", "type": "u64" },
+          { "name": "postTime", "type": "i64" }
         ]
       }
     },
@@ -185,35 +76,15 @@
       "type": {
         "kind": "struct",
         "fields": [
-          {
-            "name": "authority",
-            "type": "publicKey"
-          },
-          {
-            "name": "text",
-            "type": "string"
-          },
-          {
-            "name": "commenterName",
-            "type": "string"
-          },
-          {
-            "name": "commenterUrl",
-            "type": "string"
-          },
-          {
-            "name": "index",
-            "type": "u64"
-          },
-          {
-            "name": "postTime",
-            "type": "i64"
-          }
+          { "name": "authority", "type": "publicKey" },
+          { "name": "text", "type": "string" },
+          { "name": "commenterName", "type": "string" },
+          { "name": "commenterUrl", "type": "string" },
+          { "name": "index", "type": "u64" },
+          { "name": "postTime", "type": "i64" }
         ]
       }
     }
   ],
-  "metadata": {
-    "address": "6b5cvMWLE1LwRzzv4dtiz1w5yHTnpbt3A2s3UtbvZkWt"
-  }
+  "metadata": { "address": "6b5cvMWLE1LwRzzv4dtiz1w5yHTnpbt3A2s3UtbvZkWt" }
 }
