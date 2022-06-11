@@ -1,7 +1,7 @@
 import toast, { Toaster } from "react-hot-toast";
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { useWallet } from "@solana/wallet-adapter-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { SOLANA_HOST } from "../utils/const";
 import { getProgramInstance } from "../utils/get-program";
 import CreatePost from "./CreatePost";
@@ -35,7 +35,7 @@ const Feed: React.FC<Props> = ({ connected, name, url }) => {
   const [posts, setPosts] = useState<any>([]);
   const [loading, setLoading] = useState(true);
 
-  const getAllPosts = async () => {
+  const getAllPosts = useCallback(async () => {
     try {
       const postsData = await program.account.postAccount.all();
 
@@ -49,7 +49,7 @@ const Feed: React.FC<Props> = ({ connected, name, url }) => {
     } catch (error) {
       console.error(error);
     }
-  };
+  }, [program.account.postAccount]);
 
   const getCommentsOnPost = async (index: any) => {
     try {

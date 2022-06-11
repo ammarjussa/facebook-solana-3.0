@@ -18,6 +18,7 @@ const Contact: React.FC<Props> = ({ user }) => {
         height={40}
         width={40}
         className={style.contactImage}
+				alt="profile image"
       />
       <div className={style.contactName}>{user.name}</div>
     </div>

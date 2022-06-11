@@ -34,7 +34,7 @@ export const WalletBalanceProvider = ({
         setBalance(balance / LAMPORTS_PER_SOL);
       }
     })();
-  }, [wallet, connection]);
+  }, [wallet]);
 
   return (
     <BalanceContext.Provider value={[balance, setBalance]}>

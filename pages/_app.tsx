@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import "../styles/globals.css";
 import { WalletBalanceProvider } from "../context/useWalletBalance";
+import { ModalProvider } from "react-simple-hook-modal";
 import { AppProps } from "next/app";
 
 const WalletConnectionProvider: any = dynamic(
@@ -10,20 +11,12 @@ const WalletConnectionProvider: any = dynamic(
   }
 );
 
-const ModalProvider: any = dynamic(
-  () => import("react-simple-hook-modal") as any,
-  {
-    ssr: false,
-  }
-);
-
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <WalletConnectionProvider>
       <WalletBalanceProvider>
-        <ModalProvider>
-          <Component {...pageProps} />
-        </ModalProvider>
+        <ModalProvider />
+        <Component {...pageProps} />
       </WalletBalanceProvider>
     </WalletConnectionProvider>
   );

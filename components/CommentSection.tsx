@@ -11,7 +11,6 @@ interface Props {
 const CommentSection: React.FC<Props> = ({
   comments,
   createCommentForPost,
-  name,
   url,
 }) => {
   const style = {
@@ -23,11 +22,7 @@ const CommentSection: React.FC<Props> = ({
       {comments.map((comment: any, index: any) => (
         <Comment comment={comment} key={index} />
       ))}
-      <CreateComment
-        createCommentForPost={createCommentForPost}
-        name={name}
-        url={url}
-      />
+      <CreateComment createCommentForPost={createCommentForPost} url={url} />
     </div>
   );
 };

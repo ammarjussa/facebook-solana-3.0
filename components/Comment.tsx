@@ -31,6 +31,7 @@ const Comment: React.FC<Props> = ({ comment }) => {
             src={comment.commenterUrl}
             height={40}
             width={40}
+						alt="profile image"
           />
         </div>
         <div className={style.commentContainer}>

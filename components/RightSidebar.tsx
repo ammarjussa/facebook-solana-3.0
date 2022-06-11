@@ -26,7 +26,7 @@ const RightSidebar: React.FC<Props> = ({ getUsers, users }) => {
     (async () => {
       await getUsers();
     })();
-  }, []);
+  }, [getUsers]);
 
   return (
     <div className={style.wrapper}>
