@@ -15,8 +15,9 @@ const Comment: React.FC<Props> = ({ comment }) => {
     commentWrapper: `flex`,
     profileImageContainer: `object-cover mr-2`,
     profileImage: `rounded-full`,
-    commentContainer: `bg-[#3a3b3c] rounded-2xl text-white py-2 px-3`,
+    commentContainer: `bg-[#f0f2f5] rounded-2xl text-white py-2 px-3`,
     name: `text-[#a6aba4] text-sm font-semibold`,
+    text: `text-black`,
     commentActionsContainer: `flex items-center gap-[1rem] ml-[3.4rem] mb-[1rem] mt-1`,
     actionItem: `text-[#a6aba4] text-sm font-bold cursor-pointer`,
     timestamp: `text-[#a6aba4] text-sm`,
@@ -31,12 +32,12 @@ const Comment: React.FC<Props> = ({ comment }) => {
             src={comment.commenterUrl}
             height={40}
             width={40}
-						alt="profile image"
+            alt="profile image"
           />
         </div>
         <div className={style.commentContainer}>
           <div className={style.name}>{comment.commenterName}</div>
-          <div>{comment.text}</div>
+          <div className={style.text}>{comment.text}</div>
         </div>
       </div>
       <div className={style.commentActionsContainer}>

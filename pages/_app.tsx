@@ -3,6 +3,7 @@ import "../styles/globals.css";
 import { WalletBalanceProvider } from "../context/useWalletBalance";
 import { ModalProvider } from "react-simple-hook-modal";
 import { AppProps } from "next/app";
+import { DetailsProvider } from "../context/useDetails";
 
 const WalletConnectionProvider: any = dynamic(
   () => import("../context/WalletConnectionProvider") as any,
@@ -16,7 +17,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <WalletConnectionProvider>
       <WalletBalanceProvider>
         <ModalProvider />
-        <Component {...pageProps} />
+        <DetailsProvider>
+          <Component {...pageProps} />
+        </DetailsProvider>
       </WalletBalanceProvider>
     </WalletConnectionProvider>
   );

@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
+import { useDetails } from "../context/useDetails";
 
 declare global {
   interface Window {
@@ -6,36 +8,26 @@ declare global {
   }
 }
 
-interface Props {
-  setRegistered: any;
-  name: string;
-  setName: (string: string) => void;
-  url: string;
-  setUrl: (string: string) => void;
-}
+const style = {
+  wrapper: `flex flex-col p-10 justify-center items-center h-full w-full bg-[#ffffff] w-min h-min rounded-2xl`,
+  title: `text-[#afb3b8] font-semibold text-lg`,
+  form: `flex flex-col items-center`,
+  fieldContainer: `my-8 `,
+  inputTitle: `text-[#afb3b8] font-semibold mb-2 ml-3`,
+  inputContainer: `flex items-center w-[30rem] bg-[#f0f2f5] rounded-full`,
+  inputField: `bg-transparent flex-1 m-2 outline-none text-black px-2`,
+  randomUrl: `h-full bg-[#1d74e4] hover:bg-[#1d74e4] text-white px-2 py-1 mx-1 hover:px-3 rounded-full cursor-pointer duration-[0.2s] ease-in-out`,
+  submitButton: `bg-[#1d74e4] text-white font-semibold px-4 py-2 hover:px-6 rounded-full cursor-pointer duration-[0.2s] ease-in-out`,
+};
 
-const SignUp: React.FC<Props> = ({
-  setRegistered,
-  name,
-  setName,
-  url,
-  setUrl,
-}) => {
-  const style = {
-    wrapper: `flex flex-col p-4 justify-center items-center h-full w-full bg-[#252526] w-min h-min rounded-2xl`,
-    title: `text-[#afb3b8] font-semibold text-lg`,
-    form: `flex flex-col items-center`,
-    fieldContainer: `my-4 `,
-    inputTitle: `text-[#afb3b8] font-semibold mb-2 ml-3`,
-    inputContainer: `flex items-center w-[20rem] bg-[#3a3b3d] rounded-full`,
-    inputField: `bg-transparent flex-1 m-2 outline-none text-white px-2`,
-    randomUrl: `h-full bg-[#2d2d2d] hover:bg-[#252626] text-white px-2 py-1 mx-1 hover:px-3 rounded-full cursor-pointer duration-[0.2s] ease-in-out`,
-    submitButton: `bg-[#3a3b3d] text-white font-semibold px-4 py-2 hover:px-6 rounded-full cursor-pointer duration-[0.2s] ease-in-out`,
-  };
+interface Props {}
+
+const SignUp: React.FC<Props> = () => {
+  const { name, setName, url, setUrl, setRegistered } = useDetails();
+  const router = useRouter();
 
   const createUser = async (event: any) => {
-    setRegistered(true);
-
+    event.preventDefault();
     const resp = await window.solana.connect();
     const walletAddress = resp.publicKey.toString();
 
@@ -53,6 +45,9 @@ const SignUp: React.FC<Props> = ({
             "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/1200px-Facebook_f_logo_%282019%29.svg.png",
         }),
       });
+
+      setRegistered(true);
+      router.push("/");
     } catch (error) {
       console.error(error);
     }

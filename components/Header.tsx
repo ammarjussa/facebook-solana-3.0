@@ -9,22 +9,22 @@ import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 interface Props {
-  name: string;
-  url: string;
+  name?: string;
+  url?: string;
 }
 
 const Header: React.FC<Props> = ({ name, url }) => {
   const [balance] = useWalletBalance();
 
   const style = {
-    wrapper: `flex items-center w-full h-[4rem] justify-around px-[1rem] py-[0.2rem] sticky top-0 bg-[#252526] shadow-[0px 5px 8px -9px rgba(0, 0, 0, 0.75)] z-20`,
+    wrapper: `flex items-center w-full h-[4rem] justify-around px-[1rem] py-[0.2rem] sticky top-0 bg-[#ffffff] shadow-[0px 5px 8px -9px rgba(0, 0, 0, 0.75)] z-20`,
     headerLeft: `flex justify-center gap-[0.6rem]`,
     facebookLogo: `items-center flex object-contain`,
-    searchContainer: `flex items-center bg-[#3a3b3d] max-w-[18rem] rounded-full py-2 px-2 text-[#b0b3b8]`,
-    searchInput: `border-none px-[0.6rem] bg-transparent outline-none w-[18rem] text-white placeholder:text-[#b0b3b8]`,
+    searchContainer: `flex items-center bg-[#f0f2f5] max-w-[18rem] rounded-full py-2 px-2 text-[#b0b3b8]`,
+    searchInput: `border-none px-[0.6rem] bg-transparent outline-none w-[18rem] text-black placeholder:text-[#b0b3b8]`,
     headerCenterContainer: `flex-1 flex items-center justify-center h-full`,
     headerCenterWrapper: `flex justify-center h-full py-2`,
-    centerNavIconContainer: `flex items-center px-[1.8rem] cursor-pointer duration-[0.5s]  hover:bg-[#555657] rounded-[10px]`,
+    centerNavIconContainer: `flex items-center px-[1.8rem] cursor-pointer duration-[0.5s]  hover:bg-[#1d74e4] rounded-[10px]`,
     centerNavIcon: `text-2xl text-[#666]`,
     headerRight: `flex h-min`,
     headerRightButton: `flex items-center px-3 mx-2 rounded-[0.2rem] cursor-pointer`,
