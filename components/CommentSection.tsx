@@ -19,7 +19,7 @@ const CommentSection: React.FC<Props> = ({
 
   return (
     <div className={style.wrapper}>
-      {comments.map((comment: any, index: any) => (
+      {comments?.map((comment: any, index: any) => (
         <Comment comment={comment} key={index} />
       ))}
       <CreateComment createCommentForPost={createCommentForPost} url={url} />

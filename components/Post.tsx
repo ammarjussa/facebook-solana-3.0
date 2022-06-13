@@ -58,10 +58,10 @@ const Post: React.FC<Props> = ({
 
   useEffect(() => {
     postDetail();
-  }, [postDetail]);
+  }, []);
 
   useEffect(() => {
-    if (comments.length > 0) {
+    if (comments?.length > 0) {
       setIsCommentSectionOpened(true);
     }
   }, [comments]);

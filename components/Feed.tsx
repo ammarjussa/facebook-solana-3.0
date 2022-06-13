@@ -30,7 +30,9 @@ const Feed: React.FC<Props> = ({ connected, name, url }) => {
   };
 
   const wallet = useWallet();
-  const connection = new anchor.web3.Connection(SOLANA_HOST);
+  const connection = new anchor.web3.Connection(SOLANA_HOST, {
+    disableRetryOnRateLimit: true,
+  });
   const program = getProgramInstance(connection, wallet);
   const [posts, setPosts] = useState<any>([]);
   const [loading, setLoading] = useState(true);
@@ -164,23 +166,19 @@ const Feed: React.FC<Props> = ({ connected, name, url }) => {
   };
 
   useEffect(() => {
-    const interval = setInterval(async () => {
-      await getAllPosts();
-    }, 2000);
     getAllPosts();
-    return () => clearInterval(interval);
-  }, [connected, getAllPosts]);
+  }, []);
 
-  useEffect(() => {
-    toast("Posts Refreshed!", {
-      icon: "🔁",
-      style: {
-        borderRadius: "10px",
-        background: "#252526",
-        color: "#fffcf9",
-      },
-    });
-  }, [posts.length]);
+  // useEffect(() => {
+  //   toast("Posts Refreshed!", {
+  //     icon: "🔁",
+  //     style: {
+  //       borderRadius: "10px",
+  //       background: "#252526",
+  //       color: "#fffcf9",
+  //     },
+  //   });
+  // }, [posts.length]);
 
   return (
     <div className={style.wrapper}>

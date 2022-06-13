@@ -29,9 +29,14 @@ export const WalletBalanceProvider = ({
 
   useEffect(() => {
     (async () => {
-      if (wallet?.publicKey) {
-        const balance = await connection.getBalance(wallet.publicKey);
-        setBalance(balance / LAMPORTS_PER_SOL);
+      try {
+        if (wallet?.publicKey) {
+          const balance = await connection.getBalance(wallet.publicKey);
+          setBalance(balance / LAMPORTS_PER_SOL);
+        }
+      } catch (err) {
+        console.log(err);
+        setBalance(0);
       }
     })();
   }, [wallet]);
