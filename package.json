@@ -40,5 +40,17 @@
     "eslint-config-next": "12.1.4",
     "postcss": "^8.4.12",
     "tailwindcss": "^3.0.23"
+  },
+  "eslintConfig": {
+    "rules": {
+      "import/no-unresolved": [
+        2,
+        {
+          "ignore": [
+            "^(all|part):"
+          ]
+        }
+      ]
+    }
   }
 }
