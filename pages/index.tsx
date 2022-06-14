@@ -22,16 +22,16 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    (async () => {
-      await requestUsersData();
-    })();
-  }, []);
-
-  useEffect(() => {
     if (!registered) {
       router.push("/signup");
     }
   });
+
+  useEffect(() => {
+    (async () => {
+      await requestUsersData();
+    })();
+  }, []);
 
   const wallet = useWallet();
 

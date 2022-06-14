@@ -14,11 +14,11 @@ const Contact: React.FC<Props> = ({ user }) => {
   return (
     <div className={style.contact}>
       <Image
-        src={user.profileImage}
+        src={user.profileImage || "/ammar.jpg"}
         height={40}
         width={40}
         className={style.contactImage}
-				alt="profile image"
+        alt="profile image"
       />
       <div className={style.contactName}>{user.name}</div>
     </div>

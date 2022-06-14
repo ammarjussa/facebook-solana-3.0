@@ -1,5 +1,5 @@
 {
-  "name": "facebook-solana-30",
+  "name": "facebook-clone-blockchain",
   "private": true,
   "version": "1.0.0",
   "description": "",
@@ -27,5 +27,9 @@
     "react-dom": "^17.0",
     "styled-components": "^5.2.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ammarjussa/facebook-solana-3.0.git"
+  }
 }

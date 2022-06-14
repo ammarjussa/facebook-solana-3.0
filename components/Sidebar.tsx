@@ -9,16 +9,19 @@ interface Props {
 const Sidebar: React.FC<Props> = ({ name, url }) => {
   const style = {
     wrapper: `py-[25px] px-[10px] w-[24rem] `,
-    sidebarRow: `flex w-full mb-[20px] hover:bg-[#2a2b2c] transition-all duration-300 ease-in-out rounded-lg p-[5px] gap-[10px] cursor-pointer`,
+    sidebarRow: `flex w-full pb-[30px] hover:bg-[#eaeaea] rounded-lg p-[5px] gap-[10px] cursor-pointer`,
     profileImage: `rounded-full object-cover`,
-    sidebarItem: `text-white font-semibold flex items-center  flex-col justify-center text-sm `,
+    sidebarItem: `font-semibold flex items-center  flex-col justify-center text-sm `,
   };
   return (
     <div className={style.wrapper}>
       <div className={style.sidebarRow}>
         <Image
           className={style.profileImage}
-          src={url}
+          src={
+            url ||
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/1200px-Facebook_f_logo_%282019%29.svg.png"
+          }
           height={30}
           width={30}
           alt="profile image"

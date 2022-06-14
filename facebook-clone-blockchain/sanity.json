@@ -1,10 +1,10 @@
 {
   "root": true,
   "project": {
-    "name": "facebook-solana-3.0"
+    "name": "facebook-clone-blockchain"
   },
   "api": {
-    "projectId": "flec7dkw",
+    "projectId": "n4noaqrh",
     "dataset": "production"
   },
   "plugins": [

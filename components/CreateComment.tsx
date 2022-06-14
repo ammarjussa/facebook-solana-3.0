@@ -18,7 +18,7 @@ const CreateComment: React.FC<Props> = ({ createCommentForPost, url }) => {
     profileImage: `rounded-full`,
     inputContainer: `flex flex-1 h-10 bg-[#f0f2f5] rounded-full px-[1rem]`,
     form: `flex flex-1 items-center`,
-    input: `w-full bg-transparent outline-none`,
+    input: `w-full bg-transparent outline-none text-black`,
     inputIcons: `flex items-center gap-[0.4rem]`,
     icon: `cursor-pointer text-[#a6a9ae]`,
   };

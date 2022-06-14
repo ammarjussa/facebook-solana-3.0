@@ -9,13 +9,13 @@ interface Props {
 
 const RightSidebar: React.FC<Props> = ({ getUsers, users }) => {
   const style = {
-    wrapper: `w-[24rem] text-lg text-white`,
+    wrapper: `w-[24rem] text-lg`,
     title: `text-[#afb3b8] font-semibold`,
     adsContainer: ``,
     ad: `flex items-center my-3 mr-[1rem] p-2 rounded-lg`,
     adImageContainer: `h-full w-[50%] flex items-center mr-[0.5rem]`,
-    adImage: `object-cover`,
-    adLink: `text-[#b0b3b8] text-sm`,
+    adImage: `rounded-full`,
+    adLink: `text-[#b0b3b8] text-sm hover:text-blue-800`,
     divider: `w-[95%] border-b border-[0.5px] border-[#3e4042] my-2`,
     contact: `flex items-center my-2`,
     contactImage: `rounded-full object-cover`,
@@ -35,19 +35,25 @@ const RightSidebar: React.FC<Props> = ({ getUsers, users }) => {
         <div className={style.ad}>
           <div className={style.adImageContainer}>
             <Image
-              src={
-                "https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/themes/284832/settings_images/HpzVcovxQz28Br7GkRyq_15289248_269068140162594_1580546814749307408_o_1_.png"
-              }
+              src={"/ammar.jpg"}
               height={100}
               width={100}
               className={style.adImage}
               alt="cp logo"
+              priority={true}
             />
             ˚
           </div>
           <div>
-            <div>The #1 Channel for Blockchain Development</div>
-            <div className={style.adLink}>cleverprogrammer.com</div>
+            <div>Checkout this portfolio site for more amazing projects</div>
+            <a
+              href="https://ammarjussa.com/"
+              className={style.adLink}
+              target="_blank"
+              rel="noreferrer"
+            >
+              ammarjussa.com
+            </a>
           </div>
         </div>
         <div className={style.ad}>
@@ -60,11 +66,19 @@ const RightSidebar: React.FC<Props> = ({ getUsers, users }) => {
               width={100}
               className={style.adImage}
               alt="solana logo"
+              priority={true}
             />
           </div>
           <div>
             <div>Powerful for developers. Fast for everyone.</div>
-            <div className={style.adLink}>solana.com</div>
+            <a
+              href="https://solana.com"
+              className={style.adLink}
+              target="_blank"
+              rel="noreferrer"
+            >
+              solana.com
+            </a>
           </div>
         </div>
         <div className={style.divider} />

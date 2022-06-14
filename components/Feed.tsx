@@ -33,7 +33,7 @@ const Feed: React.FC<Props> = ({ connected, name, url }) => {
   const connection = new anchor.web3.Connection(SOLANA_HOST, {
     disableRetryOnRateLimit: true,
   });
-  const program = getProgramInstance(connection, wallet);
+  const program: any = getProgramInstance(connection, wallet);
   const [posts, setPosts] = useState<any>([]);
   const [loading, setLoading] = useState(true);
 
@@ -42,7 +42,8 @@ const Feed: React.FC<Props> = ({ connected, name, url }) => {
       const postsData = await program.account.postAccount.all();
 
       postsData.sort(
-        (a, b) => b.account.postTime.toNumber() - a.account.postTime.toNumber()
+        (a: any, b: any) =>
+          b.account.postTime.toNumber() - a.account.postTime.toNumber()
       );
 
       setPosts(postsData);
@@ -51,7 +52,7 @@ const Feed: React.FC<Props> = ({ connected, name, url }) => {
     } catch (error) {
       console.error(error);
     }
-  }, [program.account.postAccount]);
+  }, [program.account?.postAccount]);
 
   const getCommentsOnPost = async (index: any) => {
     try {
@@ -166,19 +167,25 @@ const Feed: React.FC<Props> = ({ connected, name, url }) => {
   };
 
   useEffect(() => {
+    const interval = setInterval(async () => {
+      await getAllPosts();
+    }, 2000);
     getAllPosts();
-  }, []);
+    return () => clearInterval(interval);
+  }, [connected]);
 
-  // useEffect(() => {
-  //   toast("Posts Refreshed!", {
-  //     icon: "🔁",
-  //     style: {
-  //       borderRadius: "10px",
-  //       background: "#252526",
-  //       color: "#fffcf9",
-  //     },
-  //   });
-  // }, [posts.length]);
+  useEffect(() => {
+    toast("Posts Refreshed!", {
+      icon: "🔁",
+      style: {
+        borderRadius: "10px",
+        background: "#252526",
+        color: "#fffcf9",
+      },
+    });
+  }, [posts.length]);
+
+  if (program === false) return <div></div>;
 
   return (
     <div className={style.wrapper}>

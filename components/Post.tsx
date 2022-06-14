@@ -35,7 +35,7 @@ const Post: React.FC<Props> = ({
     timestamp: `text-sm text-[#777]`,
     text: `py-[1rem] px-[1.2rem] text-black`,
     reactionsContainer: `border-t border-[#3a3b3e] text-[18px] flex justify-evenly text-[#b0b3b8] cursor-pointer py-1`,
-    reactionItem: `flex flex-1 items-center justify-center rounded-[0.4rem] hover:bg-[#404041] py-2`,
+    reactionItem: `flex flex-1 items-center justify-center rounded-[0.4rem] hover:bg-[#eaeaea] py-2`,
     reactionsText: `ml-[1rem]`,
     refreshIcon: `text-blue-500`,
   };
@@ -58,6 +58,7 @@ const Post: React.FC<Props> = ({
 
   useEffect(() => {
     postDetail();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
