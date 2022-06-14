@@ -15,6 +15,8 @@ const nextConfig = {
       "scontent-lax3-1.xx.fbcdn.net",
       "scontent.fkhi4-2.fna.fbcdn.net",
     ],
+    loader: "akamai",
+    path: "",
   },
 };
 
