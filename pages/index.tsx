@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
-import SignUp from "../components/SignUp";
 import Header from "../components/Header";
 import Feed from "../components/Feed";
 import RightSidebar from "../components/RightSidebar";

@@ -56,3 +56,5 @@ yarn.lock
 yarn-error.log
 package-lock.json
 .dccache
+# Local Netlify folder
+.netlify
