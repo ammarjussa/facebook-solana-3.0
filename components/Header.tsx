@@ -4,7 +4,7 @@ import { BsDisplay } from "react-icons/bs";
 import { RiGroup2Line } from "react-icons/ri";
 import { SiFacebookgaming } from "react-icons/si";
 import solanaLogo from "../assets/sol.png";
-import useWalletBalance from "../context/useWalletBalance";
+import useWalletBalance from "../providers/WalletBalanceProvider";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 require("@solana/wallet-adapter-react-ui/styles.css");
 

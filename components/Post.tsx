@@ -53,7 +53,7 @@ const Post: React.FC<Props> = ({
   };
 
   const createCommentForPost = async (text: any) => {
-    createComment(text, post.index, post.commentCount);
+    createComment(name, url, text, post.index, post.commentCount);
   };
 
   useEffect(() => {

@@ -1,6 +1,5 @@
 import Image from "next/image";
-import { useRouter } from "next/router";
-import { useDetails } from "../context/useDetails";
+import { useDetails } from "../providers/DetailsProvider";
 
 declare global {
   interface Window {
@@ -24,7 +23,6 @@ interface Props {}
 
 const SignUp: React.FC<Props> = () => {
   const { name, setName, url, setUrl, setRegistered } = useDetails();
-  const router = useRouter();
 
   const createUser = async (event: any) => {
     event.preventDefault();
@@ -47,7 +45,6 @@ const SignUp: React.FC<Props> = () => {
       });
 
       setRegistered(true);
-      router.push("/");
     } catch (error) {
       console.error(error);
     }

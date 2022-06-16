@@ -32,9 +32,9 @@ const CreatePost: React.FC<Props> = ({ savePost, getAllPosts, name, url }) => {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    setInput("");
+    await savePost(name, url, input);
 
-    await savePost(input);
+    setInput("");
   };
 
   return (

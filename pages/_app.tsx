@@ -1,12 +1,13 @@
 import dynamic from "next/dynamic";
 import "../styles/globals.css";
-import { WalletBalanceProvider } from "../context/useWalletBalance";
+import { WalletBalanceProvider } from "../providers/WalletBalanceProvider";
 import { ModalProvider } from "react-simple-hook-modal";
 import { AppProps } from "next/app";
-import { DetailsProvider } from "../context/useDetails";
+import { DetailsProvider } from "../providers/DetailsProvider";
+import { FeedProvider } from "../providers/FeedProvider";
 
 const WalletConnectionProvider: any = dynamic(
-  () => import("../context/WalletConnectionProvider") as any,
+  () => import("../providers/WalletConnectionProvider") as any,
   {
     ssr: false,
   }
@@ -17,9 +18,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     <WalletConnectionProvider>
       <WalletBalanceProvider>
         <ModalProvider />
-        <DetailsProvider>
-          <Component {...pageProps} />
-        </DetailsProvider>
+        <FeedProvider>
+          <DetailsProvider>
+            <Component {...pageProps} />
+          </DetailsProvider>
+        </FeedProvider>
       </WalletBalanceProvider>
     </WalletConnectionProvider>
   );
