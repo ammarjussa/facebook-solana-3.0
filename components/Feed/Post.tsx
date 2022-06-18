@@ -3,7 +3,7 @@ import Image from "next/image";
 import { BiLike } from "react-icons/bi";
 import { FaRegCommentAlt } from "react-icons/fa";
 import { FiRefreshCw } from "react-icons/fi";
-import CommentSection from "./CommentSection";
+import CommentSection from "../Comment/CommentSection";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 

@@ -2,7 +2,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useEffect } from "react";
 import CreatePost from "./CreatePost";
 import Post from "./Post";
-import { useFeed } from "../providers/FeedProvider";
+import { useFeed } from "../../providers/FeedProvider";
 
 interface Props {
   connected: any;
@@ -49,7 +49,7 @@ const Feed: React.FC<Props> = ({ connected, name, url }) => {
       <Toaster position="bottom-left" reverseOrder={false} />
       <div>
         {loading ? (
-          <div>Loading...</div>
+          <div>Connect your wallet</div>
         ) : (
           <div>
             <CreatePost

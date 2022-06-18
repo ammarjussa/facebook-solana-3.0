@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { sidebarData } from "../static/static";
+import { sidebarData } from "../../static/static";
 
 interface Props {
   name: string;

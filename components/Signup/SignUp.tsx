@@ -1,5 +1,6 @@
+import { useWallet } from "@solana/wallet-adapter-react";
 import Image from "next/image";
-import { useDetails } from "../providers/DetailsProvider";
+import { useDetails } from "../../providers/DetailsProvider";
 
 declare global {
   interface Window {
@@ -23,11 +24,20 @@ interface Props {}
 
 const SignUp: React.FC<Props> = () => {
   const { name, setName, url, setUrl, setRegistered } = useDetails();
+  const wallet = useWallet();
 
   const createUser = async (event: any) => {
     event.preventDefault();
     const resp = await window.solana.connect();
+    console.log(resp);
     const walletAddress = resp.publicKey.toString();
+
+    console.log(wallet);
+
+    if (!wallet.publicKey) {
+      alert("Connect your wallet");
+      return;
+    }
 
     try {
       await fetch(`/api/createUser`, {
@@ -44,6 +54,14 @@ const SignUp: React.FC<Props> = () => {
         }),
       });
 
+      const data = {
+        name: name,
+        url: url,
+        address: walletAddress,
+      };
+
+      localStorage.setItem("signIn", JSON.stringify(data));
+
       setRegistered(true);
     } catch (error) {
       console.error(error);
@@ -53,7 +71,7 @@ const SignUp: React.FC<Props> = () => {
   const generateRandomProfileImageUrl = () =>
     setUrl(
       `https://avatars.dicebear.com/api/pixel-art-neutral/${Math.floor(
-        Math.random() * 100
+        Math.random() * 1000
       )}.svg`
     );
 

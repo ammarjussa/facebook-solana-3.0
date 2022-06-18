@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
-import Header from "../components/Header";
-import Feed from "../components/Feed";
-import RightSidebar from "../components/RightSidebar";
-import Sidebar from "../components/Sidebar";
+import Header from "../components/Header/Header";
+import Feed from "../components/Feed/Feed";
+import RightSidebar from "../components/Sidebar/RightSidebar";
+import Sidebar from "../components/Sidebar/Sidebar";
 import { useDetails } from "../providers/DetailsProvider";
-import SignUp from "../components/SignUp";
+import SignUp from "../components//Signup/SignUp";
 
 const style = {
   wrapper: `bg-[#f8f9fa] min-h-screen duration-[0.5s]`,
@@ -16,16 +16,25 @@ const style = {
 };
 
 export default function Home() {
-  const { name, url, registered } = useDetails();
+  const { name, url, registered, setName, setUrl, setRegistered } =
+    useDetails();
   const [users, setUsers] = useState([]);
+  const wallet = useWallet();
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("signIn") as string);
+    if (data) {
+      setRegistered(true);
+      setName(data.name);
+      setUrl(data.url);
+    }
+  });
 
   useEffect(() => {
     (async () => {
       await requestUsersData();
     })();
   }, []);
-
-  const wallet = useWallet();
 
   const requestUsersData = async () => {
     try {

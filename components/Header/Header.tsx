@@ -3,9 +3,10 @@ import { AiOutlineSearch, AiFillHome } from "react-icons/ai";
 import { BsDisplay } from "react-icons/bs";
 import { RiGroup2Line } from "react-icons/ri";
 import { SiFacebookgaming } from "react-icons/si";
-import solanaLogo from "../assets/sol.png";
-import useWalletBalance from "../providers/WalletBalanceProvider";
+import solanaLogo from "../../assets/sol.png";
+import useWalletBalance from "../../providers/WalletBalanceProvider";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { useDetails } from "../../providers/DetailsProvider";
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 interface Props {
@@ -15,6 +16,17 @@ interface Props {
 
 const Header: React.FC<Props> = ({ name, url }) => {
   const [balance] = useWalletBalance();
+  const { setName, setUrl, setRegistered } = useDetails();
+
+  const logoutPrompt = () => {
+    const logout = confirm("Do you want to logout?");
+    if (logout) {
+      localStorage.clear();
+      setRegistered(false);
+      setName("");
+      setUrl("");
+    }
+  };
 
   const style = {
     wrapper: `flex items-center w-full h-[4rem] justify-around px-[1rem] py-[0.2rem] sticky top-0 bg-[#ffffff] shadow-[0px 5px 8px -9px rgba(0, 0, 0, 0.75)] z-20`,
@@ -72,7 +84,10 @@ const Header: React.FC<Props> = ({ name, url }) => {
       </div>
       <div className={style.headerRight}>
         {name && (
-          <div className={`${style.userInfo} ${style.headerRightButton}`}>
+          <div
+            className={`${style.userInfo} ${style.headerRightButton}`}
+            onClick={logoutPrompt}
+          >
             <Image
               src={
                 url ||

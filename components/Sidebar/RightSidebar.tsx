@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Image from "next/image";
-import Contact from "./Contact";
+import Contact from "../Feed/Contact";
 
 interface Props {
   users: any;
