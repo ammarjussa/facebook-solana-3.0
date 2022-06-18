@@ -165,16 +165,14 @@ export const FeedProvider: React.FC<Props> = ({ children }) => {
         ],
         program.programId
       );
-
-      await program.methods
-        .createComment({ text, name, url })
-        .accounts({
+      await program.rpc.createComment(text, name, url, {
+        accounts: {
           post: postSigner,
           comment: commentSigner,
-          authority: wallet.publicKey as any,
+          authority: wallet.publicKey,
           ...defaultAccounts,
-        })
-        .rpc();
+        },
+      });
 
       await program.account.commentAccount.fetch(commentSigner);
     } catch (error) {

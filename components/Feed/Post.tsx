@@ -17,6 +17,7 @@ interface Props {
   createComment: any;
   name: string;
   url: string;
+  getAllPosts: () => Promise<void>;
 }
 
 const Post: React.FC<Props> = ({
@@ -25,6 +26,7 @@ const Post: React.FC<Props> = ({
   createComment,
   name,
   url,
+  getAllPosts,
 }) => {
   const style = {
     wrapper: `w-[100%] mt-[1rem] rounded-[0.6rem] bg-[#ffffff] text-white p-[0.4rem] pb-0`,
@@ -40,7 +42,6 @@ const Post: React.FC<Props> = ({
     refreshIcon: `text-blue-500`,
   };
 
-  const [isCommentSectionOpened, setIsCommentSectionOpened] = useState(false);
   const [comments, setComments] = useState([]);
 
   const clockToDateString = (timestamp: any) =>
@@ -52,7 +53,7 @@ const Post: React.FC<Props> = ({
     setComments(await result);
   };
 
-  const createCommentForPost = async (text: any) => {
+  const createCommentForPost = async (name: string, url: string, text: any) => {
     createComment(name, url, text, post.index, post.commentCount);
   };
 
@@ -60,12 +61,6 @@ const Post: React.FC<Props> = ({
     postDetail();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {
-    if (comments?.length > 0) {
-      setIsCommentSectionOpened(true);
-    }
-  }, [comments]);
 
   return (
     <div className={style.wrapper}>
@@ -94,26 +89,24 @@ const Post: React.FC<Props> = ({
           <BiLike />
           <div className={style.reactionsText}>Like</div>
         </div>
-        <div
-          className={style.reactionItem}
-          onClick={() => setIsCommentSectionOpened(!isCommentSectionOpened)}
-        >
+        <div className={style.reactionItem}>
           <FaRegCommentAlt />
           <div className={style.reactionsText}>Comment</div>
         </div>
         <div className={style.reactionItem}>
           <FiRefreshCw className={style.refreshIcon} />
-          <div className={style.reactionsText}>Refresh Comments</div>
+          <div className={style.reactionsText} onClick={() => getAllPosts()}>
+            Refresh Comments
+          </div>
         </div>
       </div>
-      {isCommentSectionOpened && (
-        <CommentSection
-          comments={comments}
-          createCommentForPost={createCommentForPost}
-          name={name}
-          url={url}
-        />
-      )}
+
+      <CommentSection
+        comments={comments}
+        createCommentForPost={createCommentForPost}
+        name={name}
+        url={url}
+      />
     </div>
   );
 };

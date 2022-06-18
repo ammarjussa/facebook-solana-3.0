@@ -61,6 +61,7 @@ const Feed: React.FC<Props> = ({ connected, name, url }) => {
 
             {posts.map((post: any) => (
               <Post
+                getAllPosts={getAllPosts}
                 post={post.account}
                 viewDetail={getCommentsOnPost}
                 createComment={saveComment}

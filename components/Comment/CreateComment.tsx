@@ -7,10 +7,15 @@ import { BiSticker } from "react-icons/bi";
 
 interface Props {
   createCommentForPost: any;
+  name: string;
   url: string;
 }
 
-const CreateComment: React.FC<Props> = ({ createCommentForPost, url }) => {
+const CreateComment: React.FC<Props> = ({
+  createCommentForPost,
+  name,
+  url,
+}) => {
   const [input, setInput] = useState("");
 
   const style = {
@@ -26,7 +31,7 @@ const CreateComment: React.FC<Props> = ({ createCommentForPost, url }) => {
   const postComment = async (event: any) => {
     event.preventDefault();
 
-    await createCommentForPost(input);
+    await createCommentForPost(name, url, input);
     setInput("");
   };
 
