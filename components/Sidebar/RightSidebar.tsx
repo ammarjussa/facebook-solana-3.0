@@ -9,7 +9,7 @@ interface Props {
 
 const RightSidebar: React.FC<Props> = ({ getUsers, users }) => {
   const style = {
-    wrapper: `w-[24rem] text-lg`,
+    wrapper: `w-[24rem] text-lg hidden md:block`,
     title: `text-[#afb3b8] font-semibold`,
     adsContainer: ``,
     ad: `flex items-center my-3 mr-[1rem] p-2 rounded-lg`,

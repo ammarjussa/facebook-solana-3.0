@@ -8,7 +8,7 @@ interface Props {
 
 const Sidebar: React.FC<Props> = ({ name, url }) => {
   const style = {
-    wrapper: `py-[25px] px-[10px] w-[24rem] `,
+    wrapper: `py-[25px] px-[10px] w-[24rem] hidden md:block`,
     sidebarRow: `flex w-full pb-[30px] hover:bg-[#eaeaea] rounded-lg p-[5px] gap-[10px] cursor-pointer`,
     profileImage: `rounded-full object-cover`,
     sidebarItem: `font-semibold flex items-center  flex-col justify-center text-sm `,

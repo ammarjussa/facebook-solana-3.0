@@ -12,7 +12,7 @@ interface Props {
 
 const Feed: React.FC<Props> = ({ connected, name, url }) => {
   const style = {
-    wrapper: `flex-1 max-w-2xl mx-4`,
+    wrapper: `flex-1 w-[100%] mx-4 md:max-w-2xl`,
   };
 
   const {
