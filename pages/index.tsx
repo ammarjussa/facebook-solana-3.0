@@ -6,6 +6,7 @@ import RightSidebar from "../components/Sidebar/RightSidebar";
 import Sidebar from "../components/Sidebar/Sidebar";
 import { useDetails } from "../providers/DetailsProvider";
 import SignUp from "../components//Signup/SignUp";
+import { NextPage } from "next";
 
 const style = {
   wrapper: `bg-[#f8f9fa] min-h-screen duration-[0.5s]`,
@@ -15,7 +16,7 @@ const style = {
   signupContainer: `flex items-center justify-center w-screen h-[85vh]`,
 };
 
-export default function Home() {
+const Home: NextPage = () => {
   const { name, url, registered, setName, setUrl, setRegistered } =
     useDetails();
   const [users, setUsers] = useState([]);
@@ -71,4 +72,6 @@ export default function Home() {
       )}
     </div>
   );
-}
+};
+
+export default Home;

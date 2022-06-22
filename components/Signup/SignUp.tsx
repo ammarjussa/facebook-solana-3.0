@@ -14,9 +14,9 @@ const style = {
   form: `flex flex-col items-center`,
   fieldContainer: `my-8 `,
   inputTitle: `text-[#afb3b8] font-semibold mb-2 ml-3`,
-  inputContainer: `flex items-center w-[30rem] bg-[#f0f2f5] rounded-full`,
+  inputContainer: `flex items-center w-[20rem] md:w-[30rem] bg-[#f0f2f5] rounded-full`,
   inputField: `bg-transparent flex-1 m-2 outline-none text-black px-2`,
-  randomUrl: `h-full bg-[#1d74e4] hover:bg-[#1d74e4] text-white px-2 py-1 mx-1 hover:px-3 rounded-full cursor-pointer duration-[0.2s] ease-in-out`,
+  randomUrl: `h-full bg-[#1d74e4] hover:bg-[#1d74e4] text-white px-2 py-1 mx-1 hover:px-3 rounded-full cursor-pointer duration-[0.2s] ease-in-out hidden md:flex`,
   submitButton: `bg-[#1d74e4] text-white font-semibold px-4 py-2 hover:px-6 rounded-full cursor-pointer duration-[0.2s] ease-in-out`,
 };
 
