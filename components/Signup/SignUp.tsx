@@ -1,5 +1,6 @@
 import { useWallet } from "@solana/wallet-adapter-react";
 import Image from "next/image";
+import { useRef } from "react";
 import { useDetails } from "../../providers/DetailsProvider";
 
 declare global {
@@ -16,7 +17,6 @@ const style = {
   inputTitle: `text-[#afb3b8] font-semibold mb-2 ml-3`,
   inputContainer: `flex items-center w-[20rem] md:w-[30rem] bg-[#f0f2f5] rounded-full`,
   inputField: `bg-transparent flex-1 m-2 outline-none text-black px-2`,
-  randomUrl: `h-full bg-[#1d74e4] hover:bg-[#1d74e4] text-white px-2 py-1 mx-1 hover:px-3 rounded-full cursor-pointer duration-[0.2s] ease-in-out hidden md:flex`,
   submitButton: `bg-[#1d74e4] text-white font-semibold px-4 py-2 hover:px-6 rounded-full cursor-pointer duration-[0.2s] ease-in-out`,
 };
 
@@ -25,6 +25,12 @@ interface Props {}
 const SignUp: React.FC<Props> = () => {
   const { name, setName, url, setUrl, setRegistered } = useDetails();
   const wallet = useWallet();
+  const inputFile: any = useRef();
+
+  const handleChange = (e: any) => {
+    const img = e.target.files[0];
+    setUrl(URL.createObjectURL(img));
+  };
 
   const createUser = async (event: any) => {
     event.preventDefault();
@@ -68,13 +74,6 @@ const SignUp: React.FC<Props> = () => {
     }
   };
 
-  const generateRandomProfileImageUrl = () =>
-    setUrl(
-      `https://avatars.dicebear.com/api/pixel-art-neutral/${Math.floor(
-        Math.random() * 1000
-      )}.svg`
-    );
-
   return (
     <div className={style.wrapper}>
       <div>
@@ -99,20 +98,15 @@ const SignUp: React.FC<Props> = () => {
           </div>
         </div>
         <div className={style.fieldContainer}>
-          <div className={style.inputTitle}>Profile Image URL</div>
+          <div className={style.inputTitle}>Upload Image</div>
           <div className={style.inputContainer}>
             <input
-              value={url}
-              onChange={(event) => setUrl(event.target.value)}
+              ref={inputFile}
+              onChange={handleChange}
               required
               className={style.inputField}
+              type="file"
             />
-            <div
-              className={style.randomUrl}
-              onClick={() => generateRandomProfileImageUrl()}
-            >
-              Random
-            </div>
           </div>
         </div>
         <button className={style.submitButton} type="submit">
