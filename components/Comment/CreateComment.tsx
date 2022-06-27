@@ -4,17 +4,20 @@ import { MdInsertEmoticon } from "react-icons/md";
 import { TiCameraOutline } from "react-icons/ti";
 import { RiFileGifLine } from "react-icons/ri";
 import { BiSticker } from "react-icons/bi";
+import ipfs from "../../ipfs";
 
 interface Props {
   createCommentForPost: any;
   name: string;
   url: string;
+  file: any;
 }
 
 const CreateComment: React.FC<Props> = ({
   createCommentForPost,
   name,
   url,
+  file,
 }) => {
   const [input, setInput] = useState("");
 
@@ -30,9 +33,14 @@ const CreateComment: React.FC<Props> = ({
 
   const postComment = async (event: any) => {
     event.preventDefault();
-
-    await createCommentForPost(name, url, input);
-    setInput("");
+    try {
+      const result = await ipfs.add(file);
+      console.log(result);
+      await createCommentForPost(name, result.path, input);
+      setInput("");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

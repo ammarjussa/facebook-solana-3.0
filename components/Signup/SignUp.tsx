@@ -23,12 +23,18 @@ const style = {
 interface Props {}
 
 const SignUp: React.FC<Props> = () => {
-  const { name, setName, url, setUrl, setRegistered } = useDetails();
+  const { name, setName, url, setUrl, setRegistered, setFile } = useDetails();
   const wallet = useWallet();
   const inputFile: any = useRef();
 
-  const handleChange = (e: any) => {
+  const handleChange = async (e: any) => {
     const img = e.target.files[0];
+    const reader: any = new window.FileReader();
+    reader.readAsArrayBuffer(img);
+
+    reader.onloadend = () => {
+      setFile(Buffer.from(reader.result));
+    };
     setUrl(URL.createObjectURL(img));
   };
 

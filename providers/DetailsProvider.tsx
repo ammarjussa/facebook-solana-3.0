@@ -5,11 +5,21 @@ export const DetailsContext = createContext<any>(null);
 export const DetailsProvider = ({ children }: { children: ReactNode }) => {
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
+  const [file, setFile] = useState("");
   const [registered, setRegistered] = useState(false);
 
   return (
     <DetailsContext.Provider
-      value={{ name, setName, url, setUrl, registered, setRegistered }}
+      value={{
+        name,
+        setName,
+        url,
+        setUrl,
+        registered,
+        setRegistered,
+        file,
+        setFile,
+      }}
     >
       {children}
     </DetailsContext.Provider>

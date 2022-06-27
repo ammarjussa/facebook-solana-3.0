@@ -3,6 +3,7 @@ import Image from "next/image";
 import { BsFileImageFill, BsFillCameraVideoFill } from "react-icons/bs";
 import { FiRefreshCw } from "react-icons/fi";
 import "react-simple-hook-modal/dist/styles.css";
+import ipfs from "../../ipfs";
 
 const style = {
   wrapper: `w-[100%] flex mt-[1rem] flex-col rounded-[0.6rem] bg-[#ffffff] p-2 pt-4 pb-0 shadow-[0px 5px 7px -7px rgba(0, 0, 0, 0.75)]`,
@@ -25,16 +26,28 @@ interface Props {
   getAllPosts: any;
   name: string;
   url: string;
+  file: any;
 }
 
-const CreatePost: React.FC<Props> = ({ savePost, getAllPosts, name, url }) => {
+const CreatePost: React.FC<Props> = ({
+  savePost,
+  getAllPosts,
+  name,
+  file,
+  url,
+}) => {
   const [input, setInput] = useState("");
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    await savePost(name, url, input);
-
-    setInput("");
+    try {
+      const result = await ipfs.add(file);
+      console.log(result);
+      await savePost(name, result.path, input);
+      setInput("");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

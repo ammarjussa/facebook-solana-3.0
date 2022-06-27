@@ -8,9 +8,10 @@ interface Props {
   connected: any;
   name: string;
   url: string;
+  file: any;
 }
 
-const Feed: React.FC<Props> = ({ connected, name, url }) => {
+const Feed: React.FC<Props> = ({ connected, name, url, file }) => {
   const style = {
     wrapper: `flex-1 w-[100%] mx-4 md:max-w-2xl`,
   };
@@ -56,6 +57,7 @@ const Feed: React.FC<Props> = ({ connected, name, url }) => {
               savePost={savePost}
               getAllPosts={getAllPosts}
               name={name}
+              file={file}
               url={url}
             />
 
@@ -68,6 +70,7 @@ const Feed: React.FC<Props> = ({ connected, name, url }) => {
                 key={post.account.index}
                 name={name}
                 url={url}
+                file={file}
               />
             ))}
           </div>

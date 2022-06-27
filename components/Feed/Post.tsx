@@ -17,6 +17,7 @@ interface Props {
   createComment: any;
   name: string;
   url: string;
+  file: any;
   getAllPosts: () => Promise<void>;
 }
 
@@ -26,6 +27,7 @@ const Post: React.FC<Props> = ({
   createComment,
   name,
   url,
+  file,
   getAllPosts,
 }) => {
   const style = {
@@ -66,7 +68,11 @@ const Post: React.FC<Props> = ({
     <div className={style.wrapper}>
       <div className={style.postPublisher}>
         <Image
-          src={post.posterUrl}
+          src={
+            post.posterUrl.includes("dicebear")
+              ? post.posterUrl
+              : `https://ipfs.infura.io/ipfs/${post.posterUrl}`
+          }
           className={style.avatar}
           height={44}
           width={44}
@@ -106,6 +112,7 @@ const Post: React.FC<Props> = ({
         createCommentForPost={createCommentForPost}
         name={name}
         url={url}
+        file={file}
       />
     </div>
   );

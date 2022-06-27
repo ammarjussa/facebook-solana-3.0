@@ -11,6 +11,8 @@ interface Props {
 }
 
 const Comment: React.FC<Props> = ({ comment }) => {
+  // console.log(comment);
+
   const style = {
     commentWrapper: `flex`,
     profileImageContainer: `object-cover mr-2`,
@@ -29,7 +31,11 @@ const Comment: React.FC<Props> = ({ comment }) => {
         <div className={style.profileImageContainer}>
           <Image
             className={style.profileImage}
-            src={comment.commenterUrl}
+            src={
+              comment.commenterUrl.includes("dicebear")
+                ? comment.commenterUrl
+                : `https://ipfs.infura.io/ipfs/${comment.commenterUrl}`
+            }
             height={40}
             width={40}
             alt="profile image"

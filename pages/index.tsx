@@ -17,7 +17,7 @@ const style = {
 };
 
 const Home: NextPage = () => {
-  const { name, url, registered, setName, setUrl, setRegistered } =
+  const { name, url, registered, setName, setUrl, setRegistered, file } =
     useDetails();
   const [users, setUsers] = useState([]);
   const wallet = useWallet();
@@ -57,7 +57,12 @@ const Home: NextPage = () => {
           <div className={style.homeWrapper}>
             <Sidebar name={name} url={url} />
             <div className={style.main}>
-              <Feed connected={wallet.connected} name={name} url={url} />
+              <Feed
+                connected={wallet.connected}
+                name={name}
+                url={url}
+                file={file}
+              />
             </div>
             <RightSidebar getUsers={requestUsersData} users={users} />
           </div>
