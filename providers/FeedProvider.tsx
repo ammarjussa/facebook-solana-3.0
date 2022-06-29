@@ -20,6 +20,8 @@ export const FeedContext = createContext<any>(null);
 interface ContextProps {
   posts: any;
   loading: boolean;
+  postImage: any;
+  setPostImage: any;
   getAllPosts: () => Promise<void>;
   savePost: (name: string, url: string, text: any) => Promise<void>;
   getCommentsOnPost: (index: any) => Promise<any>;
@@ -45,6 +47,7 @@ export const FeedProvider: React.FC<Props> = ({ children }) => {
   const program = getProgramInstance(connection, wallet);
   const [posts, setPosts] = useState<any>([]);
   const [loading, setLoading] = useState(true);
+  const [postImage, setPostImage] = useState();
 
   const getAllPosts = async () => {
     try {
@@ -62,7 +65,12 @@ export const FeedProvider: React.FC<Props> = ({ children }) => {
       console.error(error);
     }
   };
-  const savePost = async (name: string, url: string, text: any) => {
+  const savePost = async (
+    name: string,
+    url: string,
+    image: string,
+    text: any
+  ) => {
     let [stateSigner] = await anchor.web3.PublicKey.findProgramAddress(
       [utf8.encode("state")],
       program.programId
@@ -93,7 +101,7 @@ export const FeedProvider: React.FC<Props> = ({ children }) => {
     try {
       await program.account.postAccount.fetch(postSigner);
     } catch {
-      await program.rpc.createPost(text, name, url, {
+      await program.rpc.createPost(text, name, url, image, {
         accounts: {
           state: stateSigner,
           post: postSigner,
@@ -189,6 +197,8 @@ export const FeedProvider: React.FC<Props> = ({ children }) => {
         savePost,
         getCommentsOnPost,
         saveComment,
+        postImage,
+        setPostImage,
       }}
     >
       {children}

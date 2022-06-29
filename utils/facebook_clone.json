@@ -25,7 +25,8 @@
       "args": [
         { "name": "text", "type": "string" },
         { "name": "posterName", "type": "string" },
-        { "name": "posterUrl", "type": "string" }
+        { "name": "posterUrl", "type": "string" },
+        { "name": "posterImage", "type": "string" }
       ]
     },
     {
@@ -65,6 +66,7 @@
           { "name": "text", "type": "string" },
           { "name": "posterName", "type": "string" },
           { "name": "posterUrl", "type": "string" },
+          { "name": "posterImage", "type": "string" },
           { "name": "commentCount", "type": "u64" },
           { "name": "index", "type": "u64" },
           { "name": "postTime", "type": "i64" }
